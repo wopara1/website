@@ -62,23 +62,23 @@ export const experiencesData = [
 
 export const projectsData = [
   {
-    title: "CorpComment",
+    title: "Paradox",
     description:
-      "I worked as a full-stack developer on this startup project for 2 years. Users can give public feedback to companies.",
-    tags: ["React", "Next.js", "MongoDB", "Tailwind", "Prisma"],
+      "I am currently working on a full-stack development web application to enhance personal trading. Users can retrieve real-time analysis of financial markets.",
+    tags: ["React", "Django", "PostgreSQL", "JavaScript", "Pyhton, CSS", "Redux"],
     imageUrl: corpcommentImg,
   },
   {
-    title: "rmtDev",
+    title: "SCECAttendanceTracker",
     description:
-      "Job board for remote developer jobs. I was the front-end developer. It has features like filtering, sorting and pagination.",
-    tags: ["React", "TypeScript", "Next.js", "Tailwind", "Redux"],
+      "Organizational Meeting Tracker: In my role as the front-end developer and project manager. This platform has essential features such as advanced filtering, user feedback mechanisms, and more.",
+    tags: ["React", "Docker", "HTML", "Tailwind", "Ruby"],
     imageUrl: rmtdevImg,
   },
   {
-    title: "Word Analytics",
+    title: "Snake",
     description:
-      "A public web app for quick analytics on text. It shows word count, character count and social media post limits.",
+      "A fun desktop application that allows user to play the distinguished snake game. Current a web application",
     tags: ["React", "Next.js", "SQL", "Tailwind", "Framer"],
     imageUrl: wordanalyticsImg,
   },
@@ -105,4 +105,5 @@ export const skillsData = [
   "Natural One",
   "Figma",
   "Framer Motion",
+  "Next.js",
 ] as const;
