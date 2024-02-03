@@ -4,19 +4,13 @@ import { ReactNode } from "react";
 import Image, { StaticImageData } from "next/image";
 import { motion } from "framer-motion";
 import clsx from "clsx";
-import localFont from 'next/font/local'
 
-import slime from "public/gallery/slimeball.jpg";
-import headshotImg from "public/gallery/headshot.png";
-import me1 from "public/gallery/3-IMG_9621.jpg";
-import me2 from "public/gallery/16-IMG_9807.jpg";
+import slime from "/public/gallery/slimeball.jpg";
+import headshotImg from "/public/gallery/headshot.png";
+import me1 from "/public/gallery/3-IMG_9621.jpg";
+import me2 from "/public/gallery/16-IMG_9807.jpg";
 
 import Halo from "@/actions/halo";
-
-// const ticketingFont = localFont({
-//   src: "public/gallery/ticketing.woff2",
-//   display: "swap",
-// });
 
 type PhotoProps = {
     src: StaticImageData | string;
@@ -109,7 +103,7 @@ function Photo({
                 <div
                     className={clsx(
                         shared,
-                        "bg-[#FFFAF2] flex items-center rounded-2xl overflow-hidden"
+                        "bg-[#AEA5BE] flex items-center rounded-2xl overflow-hidden"
                     )}
                     style={{
                         backfaceVisibility: "hidden",

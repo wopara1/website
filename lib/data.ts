@@ -71,7 +71,7 @@ export const projectsData = [
   {
     title: "SCECAttendanceTracker",
     description:
-      "Organizational Meeting Tracker: In my role as the front-end developer and project manager. This platform has essential features such as advanced filtering, user feedback mechanisms, and more.",
+      "Front-end developer and project manager responsible for an Organizational Meeting Tracker platform with advanced filtering, user feedback, and essential features.",
     tags: ["React", "Docker", "HTML", "Tailwind", "Ruby"],
     imageUrl: rmtdevImg,
   },
