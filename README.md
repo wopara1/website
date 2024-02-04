@@ -6,7 +6,6 @@ My personal portfolio website is crafted in a minimalist and sleek manner, incor
 
 backend:
 - [Next.js](nextjs.org) / TypeScript
-- [React.Email & Resend] / 
 frontend:
 - [Type Script](https://www.typescriptlang.org) (App content)
 - [Tailwind CSS](https://tailwindcss.com) (Styling)
