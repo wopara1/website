@@ -3,7 +3,7 @@ import { CgWorkAlt } from "react-icons/cg";
 import { FaDatabase } from "react-icons/fa";
 import { LuGraduationCap } from "react-icons/lu";
 import corpcommentImg from "@/public/corpcomment.png";
-import rmtdevImg from "@/public/rmtdev.png";
+import scecImg from "@/public/SCEC_homepage.png";
 import wordanalyticsImg from "@/public/wordanalytics.png";
 
 export const links = [
@@ -40,7 +40,7 @@ export const experiencesData = [
     description:
       "I graduated with a Bachelor of Science degree in Computer Science in the year 2022.",
     icon: React.createElement(LuGraduationCap),
-    date: "2019",
+    date: "2018 - 2022",
   },
   {
     title: "IT Support Technicians",
@@ -48,7 +48,7 @@ export const experiencesData = [
     description:
       "Enhanced IT efficiency at Texas A&M, optimizing deployments, providing technical support to 25 departments, and streamlining operations for minimal downtime.",
     icon: React.createElement(CgWorkAlt),
-    date: "2019 - 2021",
+    date: "2021 - 2022",
   },
   {
     title: "IT Programmer",
@@ -56,7 +56,7 @@ export const experiencesData = [
     description:
       "I'm currently a programmer for the state of Texas, employed by the Comptroller of Public Accounts. I specialize in optimizing tax processing systems, with a focus on enhancing security and accuracy in tax transactions.",
     icon: React.createElement(FaDatabase),
-    date: "2021 - present",
+    date: "2022 - present",
   },
 ] as const;
 
@@ -69,18 +69,18 @@ export const projectsData = [
     imageUrl: corpcommentImg,
   },
   {
-    title: "SCECAttendanceTracker",
-    description:
-      "Front-end developer and project manager responsible for an Organizational Meeting Tracker platform with advanced filtering, user feedback, and essential features.",
-    tags: ["React", "Docker", "HTML", "Tailwind", "Ruby"],
-    imageUrl: rmtdevImg,
-  },
-  {
     title: "Snake",
     description:
       "A fun desktop application that allows user to play the distinguished snake game. Current a web application",
     tags: ["React", "Next.js", "SQL", "Tailwind", "Framer"],
     imageUrl: wordanalyticsImg,
+  },
+  {
+    title: "SCECAttendanceTracker",
+    description:
+      "Front-end developer and project manager responsible for an Organizational Meeting Tracker platform with advanced filtering, user feedback, and essential features.",
+    tags: ["React", "Docker", "Tailwind", "Ruby on Rails", "RuboCop"],
+    imageUrl: scecImg,
   },
 ] as const;
 
