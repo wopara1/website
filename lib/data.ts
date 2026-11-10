@@ -1,109 +1,111 @@
-import React from "react";
-import { CgWorkAlt } from "react-icons/cg";
-import { FaDatabase } from "react-icons/fa";
-import { LuGraduationCap } from "react-icons/lu";
-import corpcommentImg from "@/public/corpcomment.png";
 import scecImg from "@/public/SCEC_homepage.png";
-import wordanalyticsImg from "@/public/wordanalytics.png";
+import type { StaticImageData } from "next/image";
+
+export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.paradoxequity.com";
+export const email = "ewopara@gmail.com";
 
 export const links = [
-  {
-    name: "Home",
-    hash: "#home",
-  },
-  {
-    name: "About",
-    hash: "#about",
-  },
-  {
-    name: "Projects",
-    hash: "#projects",
-  },
-  {
-    name: "Skills",
-    hash: "#skills",
-  },
-  {
-    name: "Experience",
-    hash: "#experience",
-  },
-  {
-    name: "Contact",
-    hash: "#contact",
-  },
+  { name: "Work", hash: "#work" },
+  { name: "About", hash: "#about" },
+  { name: "Experience", hash: "#experience" },
+  { name: "Now", hash: "#now" },
+  { name: "Contact", hash: "#contact" },
 ] as const;
 
-export const experiencesData = [
-  {
-    title: "Texas A&M University",
-    location: "College Station, TX",
-    description:
-      "I graduated with a Bachelor of Science degree in Computer Science in the year 2022.",
-    icon: React.createElement(LuGraduationCap),
-    date: "2018 - 2022",
-  },
-  {
-    title: "IT Support Technicians",
-    location: "College Station, TX",
-    description:
-      "Enhanced IT efficiency at Texas A&M, optimizing deployments, providing technical support to 25 departments, and streamlining operations for minimal downtime.",
-    icon: React.createElement(CgWorkAlt),
-    date: "2021 - 2022",
-  },
-  {
-    title: "IT Programmer",
-    location: "Austin, TX",
-    description:
-      "I'm currently a programmer for the state of Texas, employed by the Comptroller of Public Accounts. I specialize in optimizing tax processing systems, with a focus on enhancing security and accuracy in tax transactions.",
-    icon: React.createElement(FaDatabase),
-    date: "2022 - present",
-  },
+/** Facts shown in the top strip. Labels only; no market data. */
+export const tickerItems = [
+  { label: "EW", value: "Austin, TX", tone: "flat" },
+  { label: "STATUS", value: "Open to conversations", tone: "up" },
+  { label: "PARADOX", value: "In build", tone: "up" },
+  { label: "COMPTROLLER", value: "Since 2022", tone: "flat" },
+  { label: "LEGACY", value: "COBOL / JCL / Natural", tone: "flat" },
+  { label: "MODERN", value: "TypeScript / React / Next", tone: "up" },
+  { label: "NOW", value: "Learning chess", tone: "flat" },
 ] as const;
 
-export const projectsData = [
+/** Paradox pairs, shown as a hover flip. */
+export const pairs = [
+  ["developer", "trader"],
+  ["legacy", "modern"],
+  ["logic", "intuition"],
+] as const;
+
+export type Project = {
+  symbol: string;
+  title: string;
+  role: string;
+  status: "Building" | "Shipped";
+  description: string;
+  stack: string[];
+  image?: StaticImageData;
+  featured?: boolean;
+  /** decorative sparkline points (0-100). Not real data. */
+  spark: number[];
+};
+
+export const projects: Project[] = [
   {
+    symbol: "PRDX",
     title: "Paradox",
+    role: "Creator, full stack",
+    status: "Building",
+    featured: true,
     description:
-      "I am currently working on a full-stack development web application to enhance personal trading. Users can retrieve real-time analysis of financial markets.",
-    tags: ["React", "Django", "PostgreSQL", "JavaScript", "Pyhton, CSS", "Redux"],
-    imageUrl: corpcommentImg,
+      "A full-stack web application for personal trading: real-time analysis of financial markets in one place. It lives on its own site; this is the short version.",
+    stack: ["React", "Redux", "Django", "PostgreSQL", "Python"],
+    spark: [62, 58, 64, 60, 70, 66, 74, 72, 82, 90],
   },
   {
+    symbol: "SCEC",
+    title: "SCEC Attendance Tracker",
+    role: "Front-end developer, project manager",
+    status: "Shipped",
+    description:
+      "An organizational meeting tracker with advanced filtering and user feedback. I led the front end and managed the project.",
+    stack: ["React", "Tailwind", "Ruby on Rails", "Docker", "RuboCop"],
+    image: scecImg,
+    spark: [30, 38, 36, 48, 52, 50, 60, 64, 63, 70],
+  },
+  {
+    symbol: "SNAKE",
     title: "Snake",
-    description:
-      "A fun desktop application that allows user to play the distinguished snake game. Current a web application",
-    tags: ["React", "Next.js", "SQL", "Tailwind", "Framer"],
-    imageUrl: wordanalyticsImg,
+    role: "Solo, for fun",
+    status: "Shipped",
+    description: "The classic snake game, rebuilt for the browser.",
+    stack: ["React", "Next.js", "Tailwind", "Framer Motion"],
+    spark: [50, 52, 49, 55, 53, 57, 54, 58, 56, 59],
+  },
+];
+
+export const experience = [
+  {
+    date: "2022 - now",
+    role: "IT Programmer",
+    place: "Texas Comptroller of Public Accounts, Austin",
+    note: "Improving tax processing systems with a focus on security and accuracy. Stack: COBOL, JCL, Natural, SQL, z/OS.",
   },
   {
-    title: "SCECAttendanceTracker",
-    description:
-      "Front-end developer and project manager responsible for an Organizational Meeting Tracker platform with advanced filtering, user feedback, and essential features.",
-    tags: ["React", "Docker", "Tailwind", "Ruby on Rails", "RuboCop"],
-    imageUrl: scecImg,
+    date: "2021 - 2022",
+    role: "IT Support Technician",
+    place: "Texas A&M University, College Station",
+    note: "Deployments and technical support across 25 departments, with minimal downtime.",
+  },
+  {
+    date: "2018 - 2022",
+    role: "B.S. Computer Science",
+    place: "Texas A&M University",
+    note: "Graduated 2022.",
   },
 ] as const;
 
-export const skillsData = [
-  "HTML",
-  "CSS",
-  "JavaScript",
-  "TypeScript",
-  "React",
-  "Vue",
-  "Git",
-  "Tailwind",
-  "C++",
-  "SQL",
-  "Redux",
-  "GraphQL",
-  "Cobol",
-  "JCL",
-  "PostgreSQL",
-  "Python",
-  "Django",
-  "Natural One",
-  "Figma",
-  "Framer Motion",
-  "Next.js",
+export const stack = {
+  modern: ["TypeScript", "React", "Next.js", "Tailwind", "Framer Motion", "Python", "Django", "PostgreSQL", "GraphQL", "Redux", "Git", "Figma"],
+  legacy: ["COBOL", "JCL", "Natural", "SQL", "z/OS", "XML", "C++"],
+} as const;
+
+export const now = [
+  { title: "Chess", text: "Learning to play. Slowly, and losing instructively." },
+  { title: "Charts", text: "Reading markets most days. Paradox started here." },
+  { title: "Theology & social psychology", text: "Reading on both. They overlap more than expected." },
+  { title: "Basketball & lifting", text: "The offline half of the week." },
 ] as const;

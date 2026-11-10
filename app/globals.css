@@ -3,13 +3,30 @@
 @tailwind utilities;
 
 html {
-  --line-color: #e5e7eb;
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
 }
 
-html.dark {
-  --line-color: rgba(255, 255, 255, 0.2);
+body {
+  @apply bg-paper text-ink font-sans antialiased;
+  /* faint chart-paper grid */
+  background-image:
+    linear-gradient(to right, rgba(22, 21, 15, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(22, 21, 15, 0.035) 1px, transparent 1px);
+  background-size: 48px 48px;
 }
 
-.borderBlack {
-  @apply border border-black/10;
+::selection {
+  background: #1f7a4d;
+  color: #f6f2e9;
+}
+
+.label {
+  @apply font-mono text-[0.7rem] uppercase tracking-[0.14em] text-muted;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }

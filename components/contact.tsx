@@ -1,74 +1,62 @@
 "use client";
 
-import React from "react";
-import SectionHeading from "./section-heading";
-import { motion } from "framer-motion";
-import { useSectionInView } from "@/lib/hooks";
-import { sendEmail } from "@/actions/sendEmail";
-import SubmitBtn from "./submit-btn";
+import { useState } from "react";
 import toast from "react-hot-toast";
+import SectionHeading from "./section-heading";
+import { sendEmail } from "@/actions/sendEmail";
+import { email } from "@/lib/data";
+
+const field = "w-full border border-line bg-paper px-4 py-3 outline-none transition-colors focus:border-ink";
 
 export default function Contact() {
-  const { ref } = useSectionInView("Contact");
+  const [pending, setPending] = useState(false);
+
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const form = e.currentTarget;
+    setPending(true);
+    const { error } = await sendEmail(new FormData(form));
+    setPending(false);
+    if (error) {
+      toast.error(error);
+      return;
+    }
+    toast.success("Message sent. Thank you.");
+    form.reset();
+  }
 
   return (
-    <motion.section
-      id="contact"
-      ref={ref}
-      className="mb-20 sm:mb-28 w-[min(100%,38rem)] text-center"
-      initial={{
-        opacity: 0,
-      }}
-      whileInView={{
-        opacity: 1,
-      }}
-      transition={{
-        duration: 1,
-      }}
-      viewport={{
-        once: true,
-      }}
-    >
-      <SectionHeading>Contact me</SectionHeading>
-
-      <p className="text-gray-700 -mt-6 dark:text-white/80">
-        Please contact me directly at{" "}
-        <a className="underline" href="mailto:example@gmail.com">
-          ewopara@gmail.com
-        </a>{" "}
-        or through this form.
-      </p>
-
-      <form
-        className="mt-10 flex flex-col dark:text-black"
-        action={async (formData) => {
-          const { data, error } = await sendEmail(formData);
-
-          if (error) {
-            toast.error(error);
-            return;
-          }
-
-          toast.success("Email sent successfully!");
-        }}
-      >
-        <input
-          className="h-14 px-4 rounded-lg borderBlack dark:bg-white dark:bg-opacity-80 dark:focus:bg-opacity-100 transition-all dark:outline-none"
-          name="senderEmail"
-          type="email"
-          required
-          maxLength={500}
-          placeholder="Your email"
-        />
-        <textarea
-          className="h-52 my-3 rounded-lg borderBlack p-4 dark:bg-white dark:bg-opacity-80 dark:focus:bg-opacity-100 transition-all dark:outline-none"
-          name="message"
-          placeholder="Your message"
-          required
-          maxLength={5000}
-        />
-        <SubmitBtn />
-      </form>
-    </motion.section>
+    <section id="contact" className="pb-24">
+      <SectionHeading index="05">Contact</SectionHeading>
+      <div className="grid gap-10 md:grid-cols-2">
+        <div>
+          <p className="font-serif text-3xl leading-tight sm:text-4xl">
+            Not job hunting, but always open to a <em className="italic text-up">good conversation</em>.
+          </p>
+          <p className="mt-5 text-muted">
+            Email me at{" "}
+            <a className="text-ink underline underline-offset-4" href={`mailto:${email}`}>{email}</a>{" "}
+            or use the form.
+          </p>
+        </div>
+        <form onSubmit={onSubmit} className="space-y-3">
+          <label className="block">
+            <span className="label">Your email</span>
+            <input className={field} name="senderEmail" type="email" required maxLength={500} />
+          </label>
+          <label className="block">
+            <span className="label">Message</span>
+            <textarea className={`${field} h-40`} name="message" required maxLength={5000} />
+          </label>
+          <button
+            type="submit"
+            disabled={pending}
+            className="rounded-full bg-ink px-7 py-3 text-sm font-medium text-paper transition-opacity disabled:opacity-50"
+          >
+            {pending ? "Sending..." : "Send"}
+          </button>
+        </form>
+      </div>
+    </section>
   );
 }

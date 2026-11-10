@@ -1,16 +1,10 @@
-import React from "react";
-
 export default function Footer() {
   return (
-    <footer className="mb-10 px-4 text-center text-gray-500">
-      <small className="mb-2 block text-xs">
-        &copy; {new Date().getFullYear()} Emmanuel Wopara. 
-      </small>
-      <p className="text-xs">
-        <span className="font-semibold">About this website:</span> built with
-        React & Next.js (App Router & Server Actions), TypeScript, Tailwind CSS,
-        Framer Motion, React Email & Resend, Vercel hosting.
-      </p>
+    <footer className="border-t border-line">
+      <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-3 px-5 py-8 sm:px-8">
+        <p className="label">&copy; {new Date().getFullYear()} Emmanuel Wopara</p>
+        <p className="label">Built with Next.js, Tailwind and Framer Motion</p>
+      </div>
     </footer>
   );
 }

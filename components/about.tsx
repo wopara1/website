@@ -1,43 +1,40 @@
-"use client";
-
-import React from "react";
 import SectionHeading from "./section-heading";
-import { motion } from "framer-motion";
-import { useSectionInView } from "@/lib/hooks";
+import { stack } from "@/lib/data";
 
 export default function About() {
-  const { ref } = useSectionInView("About");
-
   return (
-    <motion.section
-      ref={ref}
-      className="mb-28 max-w-[45rem] text-center leading-8 sm:mb-40 scroll-mt-28"
-      initial={{ opacity: 0, y: 100 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.175 }}
-      id="about"
-    >
-      <SectionHeading>About me</SectionHeading>
-      <p className="mb-3">
-        Upon earning my degree in <span className="font-medium">Computer Science</span>,
-        I enthusiastically embarked on a journey to indulge my passion for programming.
-        Currently, I am engaged in enhancing the Texas Tax System.
-        <span className="italic"> What captivates me most about programming </span>
-        is the creative process. I relish the gratification of unraveling solutions to intricate problems.
-        My core stack includes{" "} <span className="font-medium">React, Django, Python, SQL, and PostgresSQL</span>.
-        Proficient in TypeScript and Prisma, I am always eager to learn new technologies.
-        I'm currently on the lookout for dynamic opportunity
-        <span className="font-medium">to contribute my skills</span> as a software developer.
-      </p>
+    <section id="about" className="pb-24">
+      <SectionHeading index="02">About</SectionHeading>
+      <div className="grid gap-10 md:grid-cols-[1.2fr_1fr]">
+        <div className="space-y-5 text-lg leading-relaxed">
+          <p>
+            I studied computer science at Texas A&amp;M and now write software for the
+            State of Texas. What I like most is the moment a hard problem finally
+            comes apart into small, solvable ones.
+          </p>
+          <p className="text-muted">
+            My day job is legacy: COBOL, JCL and Natural on z/OS. My own projects
+            are modern: TypeScript, React, Python. I treat that as an advantage.
+            The older systems are getting rarer, and the newer ones keep changing,
+            so knowing both is a way to stay useful.
+          </p>
+        </div>
 
-      <p>
-        <span className="italic">When I'm not coding</span>, I enjoy playing
-        basketball, working out, and analyzing financial charts. I also enjoy{" "}
-        <span className="font-medium">learning new things</span>. I am currently
-        learning about{" "}
-        <span className="font-medium">theology and social psychology</span>. I'm also
-        learning how to play chess.
-      </p>
-    </motion.section>
+        <div className="space-y-6">
+          <div>
+            <p className="label mb-3">Modern</p>
+            <ul className="flex flex-wrap gap-2">
+              {stack.modern.map((s) => <li key={s} className="rounded-full border border-line px-3 py-1 font-mono text-xs">{s}</li>)}
+            </ul>
+          </div>
+          <div>
+            <p className="label mb-3">Legacy</p>
+            <ul className="flex flex-wrap gap-2">
+              {stack.legacy.map((s) => <li key={s} className="rounded-full border border-ink bg-ink px-3 py-1 font-mono text-xs text-paper">{s}</li>)}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
