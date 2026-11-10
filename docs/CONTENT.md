@@ -23,9 +23,9 @@ Plain, specific, first person, light dry humour (see the Chess line). No buzzwor
 | Skills | `stack.modern`, `stack.legacy` | `string[]`; legacy renders as filled pills |
 | Now | `now` | `{ title, text }[]`; 4 fits the 2x2 grid |
 
-Component-owned strings (edit in the component): hero headline and paragraph (`hero.tsx`), About paragraphs (`about.tsx`), contact heading and subcopy (`contact.tsx`), status text (`status-pill.tsx`), footer text (`footer.tsx`).
+Component-owned strings (edit in the component): hero headline and paragraph (`hero.tsx`), About paragraphs (`about.tsx`), contact heading and subcopy (`contact.tsx`), footer text (`footer.tsx`).
 
-Known duplicate: the status text appears in `status-pill.tsx` ("Open to ...") and in `tickerItems` (STATUS). Change both together.
+The availability line ("Open to connect") is one constant, `availability` in `lib/data.ts`, used by both the status pill and the ticker.
 
 ## Add or edit a project
 Append an object to `projects` in `lib/data.ts`:

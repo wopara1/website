@@ -1,4 +1,6 @@
 export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.paradoxequity.com";
+/** Single source for the availability line (status pill and ticker). */
+export const availability = "Open to connect";
 export const email = "ewopara@gmail.com";
 
 export const socials = [
@@ -17,7 +19,7 @@ export const links = [
 /** Facts shown in the top strip. Labels only; no market data. */
 export const tickerItems = [
   { label: "EW", value: "Austin, TX", tone: "flat" },
-  { label: "STATUS", value: "Open to connect", tone: "up" },
+  { label: "STATUS", value: availability, tone: "up" },
   { label: "PARADOX", value: "In build", tone: "up" },
   { label: "COMPTROLLER", value: "Since 2022", tone: "flat" },
   { label: "LEGACY", value: "COBOL / JCL / Natural", tone: "flat" },

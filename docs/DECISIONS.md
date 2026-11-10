@@ -1,7 +1,7 @@
 # Decisions
 
 Numbered, with reasons and rejected alternatives. Add new entries at the bottom; do not rewrite old ones. If a decision is reversed, add a new entry that supersedes it.
-Format: **Status** (Accepted / Superseded), **Date**, **Decided by**, then Context, Decision, Alternatives rejected, Consequences. Where a reason was not recorded at the time, it says "reason not recorded" and should be confirmed, not guessed.
+Format: **Status** (Accepted / Superseded), **Date**, **Decided by**, then Context, Decision, Alternatives rejected, Consequences. Where a reason was not recorded at the time, say so and confirm it; do not guess.
 
 ---
 
@@ -41,14 +41,14 @@ Format: **Status** (Accepted / Superseded), **Date**, **Decided by**, then Conte
 ## ADR-006: Dark-first theme with a light toggle
 - **Status:** Accepted. **Date:** 2026-11-09 (commit `f06ecfe`). **Decided by:** Emmanuel.
 - **Decision:** Dark is the default; `html.light` switches palettes. An inline pre-paint script applies a saved "light" choice. Tokens are CSS variables mapped through Tailwind `@theme inline`.
-- **Reason:** not recorded in the commit message; confirm. The terminal motif is the likely driver.
+- **Reason:** Emmanuel's personal preference.
 - **Rejected:** Following `prefers-color-scheme` automatically (not implemented; dark is the default for everyone unless they toggle).
 - **Consequences:** Every colour must come from a token so both palettes work. The toggle reads the `<html>` class, so there is no flash.
 
 ## ADR-007: Drop project screenshots; keep rows text-only
 - **Status:** Accepted. **Date:** 2026-11-09 (commit `f06ecfe`). **Decided by:** Emmanuel.
 - **Context:** `SCEC_homepage.png` was the last project screenshot and was deleted in the same commit as the dark theme.
-- **Reason:** not recorded in the commit message; confirm with Emmanuel. Revisit if real screenshots exist for Paradox.
+- **Reason:** Emmanuel's personal preference; he judges the page cleaner without them. Revisit if real screenshots exist for Paradox.
 - **Consequences:** `Project` no longer has an `image` field.
 
 ## ADR-008: Dependency upgrade and cleanup as its own commit
@@ -76,3 +76,8 @@ Format: **Status** (Accepted / Superseded), **Date**, **Decided by**, then Conte
 - **Status:** Accepted. **Date:** 2026-11-09. **Decided by:** Emmanuel (requested), written by Hermes.
 - **Decision:** Short portable `AGENTS.md`, a one-paragraph `.github/copilot-instructions.md` that points to it (same as `lucidmpools`), and detail in `docs/`. The Next-generated agent-rules block stays inside `AGENTS.md` between its markers so `next dev` does not append a duplicate.
 - **Rejected:** A long Copilot ruleset like `trader`'s 794-line file; too heavy for a one-page site.
+
+## ADR-012: One source for the availability line
+- **Status:** Accepted. **Date:** 2026-11-09. **Decided by:** Emmanuel.
+- **Decision:** `availability` constant in `lib/data.ts` feeds both `StatusPill` and the ticker's STATUS item.
+- **Rejected:** Leaving two copies; they had already been edited separately once.

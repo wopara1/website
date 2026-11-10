@@ -27,7 +27,7 @@ app/
   icon.svg, apple-icon.png, favicon.ico   EW monogram favicon set
 components/
   hero.tsx          client; headline, CTAs, social links, pair flips, headshot; takes a `status` node
-  status-pill.tsx   SERVER; "Open to ... . <Mon YYYY>" computed at render
+  status-pill.tsx   SERVER; `availability` + month/year, computed at render
   ticker.tsx        client; scrolling facts strip from `tickerItems`
   header.tsx        sticky nav + SocialLinks (icons) + ThemeToggle
   work.tsx          client; accordion rows from `projects` (first row open by default)
@@ -67,13 +67,14 @@ public/            CV.pdf, gallery/headshot.png
 4. It sends through Resend: from `Contact Form <onboarding@resend.dev>`, to `ewopara@gmail.com`, `replyTo` the sender, body from `ContactFormEmail`.
 5. Resend v6 returns `{ data, error }` and does not throw on API errors; the action maps `error` to `{ error: message }`. The client shows a toast either way.
 
-**Status:** build and typecheck pass; a real send has not been tested. `onboarding@resend.dev` is Resend's sandbox sender and only delivers to the Resend account owner's address. A verified domain sender is needed before public launch.
+**Status (tested 2026-11-09, local dev):** against a mock Resend endpoint (`RESEND_BASE_URL`), a 200 shows the success toast and clears the form; a 422 shows the API error message and keeps the input; the request carries the expected `from`, `to`, `reply_to` and auth header. One real send through the live Resend API returned the success toast. Inbox delivery was not confirmed by the tester. `onboarding@resend.dev` is Resend's sandbox sender and only delivers to the Resend account owner's address, so a verified domain sender is still needed before public launch. To test without sending, point `RESEND_BASE_URL` at a local mock.
 
 ## Environment variables
 Names only; see `.env.example`. Never commit `.env*.local`.
 | Name | Where used | Notes |
 |---|---|---|
 | `RESEND_API_KEY` | `actions/sendEmail.ts` (server) | required for the contact form |
+| `RESEND_BASE_URL` | read by the Resend SDK | optional; test-only override to a mock server. Never set in production |
 | `NEXT_PUBLIC_SITE_URL` | `app/layout.tsx`, `lib/data.ts` | optional; defaults to `https://www.paradoxequity.com`. Lets the domain change without code edits |
 
 ## Assets
@@ -82,7 +83,7 @@ Names only; see `.env.example`. Never commit `.env*.local`.
 - Project screenshots were removed; rows are text-only.
 
 ## Known gaps and open items
-1. Contact send untested; sender domain not verified (above).
+1. Contact sender domain not verified (above); inbox delivery not confirmed.
 2. No Open Graph image, `sitemap`, or `robots` metadata yet.
 3. No project links (repo or live) on any row. The Paradox row says it has its own site; no link until that exists.
 4. No automated tests. Quality gates are `npm run lint` and `npm run build` plus manual viewport checks (1440, 390, 320 px; no horizontal overflow, header one line).

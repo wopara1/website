@@ -32,7 +32,8 @@ Personal portfolio and digital footprint, served at https://www.paradoxequity.co
 - Styling goes through the colour and font tokens in `app/globals.css` (`bg-paper`, `text-ink`, `text-muted`, `text-up`, `border-line`). No raw hex in components. Both dark (default) and light palettes must look right.
 - Keep `prefers-reduced-motion` support and visible focus styles on anything interactive.
 - Tailwind 4 gotcha: next/font variables must stay behind `@theme inline`, or fonts silently fall back to system fonts.
-- The contact form sends real email through Resend. Do not trigger real sends while testing.
+- The contact form sends real email through Resend. Test with a local mock (`RESEND_BASE_URL=http://127.0.0.1:<port> next dev`); do a real send only when Emmanuel asks.
+- Next 16 allows one `next dev` per project directory. A second one exits and points at the first (this is why `--port` seemed ignored). Check `lsof -iTCP -sTCP:LISTEN` before starting.
 
 ## Content rules (short form; full version in `docs/CONTENT.md`)
 - Positioning: full-stack developer, trading as one project. The "Student of markets" headline stays. Legacy (mainframe) plus modern is the differentiator and is shown openly.
