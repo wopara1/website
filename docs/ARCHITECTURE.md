@@ -67,7 +67,7 @@ public/            CV.pdf, gallery/headshot.png
 4. It sends through Resend: from `Contact Form <onboarding@resend.dev>`, to `ewopara@gmail.com`, `replyTo` the sender, body from `ContactFormEmail`.
 5. Resend v6 returns `{ data, error }` and does not throw on API errors; the action maps `error` to `{ error: message }`. The client shows a toast either way.
 
-**Status (tested 2026-11-09, local dev):** against a mock Resend endpoint (`RESEND_BASE_URL`), a 200 shows the success toast and clears the form; a 422 shows the API error message and keeps the input; the request carries the expected `from`, `to`, `reply_to` and auth header. One real send through the live Resend API returned the success toast. Inbox delivery was not confirmed by the tester. `onboarding@resend.dev` is Resend's sandbox sender and only delivers to the Resend account owner's address, so a verified domain sender is still needed before public launch. To test without sending, point `RESEND_BASE_URL` at a local mock.
+**Status (tested 2026-11-09, local dev):** against a mock Resend endpoint (`RESEND_BASE_URL`), a 200 shows the success toast and clears the form; a 422 shows the API error message and keeps the input; the request carries the expected `from`, `to`, `reply_to` and auth header. One real send through the live Resend API returned the success toast. Emmanuel confirmed the email arrived at ewopara@gmail.com (from "Contact Form <onboarding@resend.dev>", reply-to the sender; it first landed in spam and he marked it not spam). `onboarding@resend.dev` is Resend's sandbox sender: it only delivers to the Resend account owner's address and is spam-prone, so a verified domain sender is still needed before public launch. To test without sending, point `RESEND_BASE_URL` at a local mock.
 
 ## Environment variables
 Names only; see `.env.example`. Never commit `.env*.local`.
@@ -83,7 +83,7 @@ Names only; see `.env.example`. Never commit `.env*.local`.
 - Project screenshots were removed; rows are text-only.
 
 ## Known gaps and open items
-1. Contact sender domain not verified (above); inbox delivery not confirmed.
+1. Contact sender domain not verified (above); the sandbox sender lands in spam.
 2. No Open Graph image, `sitemap`, or `robots` metadata yet.
 3. No project links (repo or live) on any row. The Paradox row says it has its own site; no link until that exists.
 4. No automated tests. Quality gates are `npm run lint` and `npm run build` plus manual viewport checks (1440, 390, 320 px; no horizontal overflow, header one line).
