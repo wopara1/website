@@ -71,7 +71,6 @@ export default function Work() {
           );
         })}
       </ul>
-      <p className="label mt-3">Trend lines are decorative. Paradox has its own site, linked here once it is live.</p>
     </section>
   );
 }

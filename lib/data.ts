@@ -4,6 +4,11 @@ import type { StaticImageData } from "next/image";
 export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.paradoxequity.com";
 export const email = "ewopara@gmail.com";
 
+export const socials = [
+  { name: "GitHub", href: "https://github.com/wopara1" },
+  { name: "LinkedIn", href: "https://www.linkedin.com/in/emmanuel-w-774359132/" },
+] as const;
+
 export const links = [
   { name: "Work", hash: "#work" },
   { name: "About", hash: "#about" },

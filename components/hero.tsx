@@ -3,19 +3,14 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import PairFlip from "./pair-flip";
+import SocialLinks from "./social-links";
 import { pairs, email } from "@/lib/data";
 
-export default function Hero() {
+export default function Hero({ status }: { status: React.ReactNode }) {
   return (
     <section id="top" className="grid gap-10 pb-20 pt-16 sm:pt-24 md:grid-cols-[1.7fr_1fr] md:items-center">
       <motion.div initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-        <p className="label mb-6 inline-flex items-center gap-2">
-          <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-up opacity-60 motion-reduce:animate-none" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-up" />
-          </span>
-          Open to conversations &middot; Nov 2026
-        </p>
+        {status}
         <h1 className="font-serif text-5xl font-medium leading-[1.02] tracking-tight sm:text-6xl lg:text-[4.25rem]">
           Full-stack developer.
           <br />
@@ -37,7 +32,8 @@ export default function Hero() {
             {email}
           </a>
         </div>
-        <ul className="mt-10 flex flex-wrap gap-2" aria-label="Interests, hover to flip">
+        <SocialLinks className="mt-6" />
+        <ul className="mt-8 flex flex-wrap gap-2" aria-label="Interests, hover to flip">
           {pairs.map(([a, b]) => (
             <li key={a}><PairFlip a={a} b={b} /></li>
           ))}

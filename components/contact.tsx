@@ -31,12 +31,12 @@ export default function Contact() {
       <div className="grid gap-10 md:grid-cols-2">
         <div>
           <p className="font-serif text-3xl leading-tight sm:text-4xl">
-            Not job hunting, but always open to a <em className="italic text-up">good conversation</em>.
+            Got something <em className="italic text-up">worth building</em>? Tell me about it.
           </p>
           <p className="mt-5 text-muted">
             Email me at{" "}
             <a className="text-ink underline underline-offset-4" href={`mailto:${email}`}>{email}</a>{" "}
-            or use the form.
+            or use the form. I read everything.
           </p>
         </div>
         <form onSubmit={onSubmit} className="space-y-3">
