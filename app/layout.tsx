@@ -11,11 +11,11 @@ import Footer from "@/components/footer";
 const serif = Fraunces({
   subsets: ["latin"],
   style: ["normal", "italic"],
-  variable: "--font-serif",
+  variable: "--font-serif-face",
   display: "swap",
 });
-const sans = DM_Sans({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
-const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono", display: "swap" });
+const sans = DM_Sans({ subsets: ["latin"], variable: "--font-sans-face", display: "swap" });
+const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono-face", display: "swap" });
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.paradoxequity.com";
 

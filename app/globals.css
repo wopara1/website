@@ -1,6 +1,21 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --color-paper: #f6f2e9;
+  --color-paper-deep: #ece6d7;
+  --color-ink: #16150f;
+  --color-muted: #6b665a;
+  --color-up: #1f7a4d;
+  --color-down: #b4412f;
+  --color-line: rgba(22, 21, 15, 0.14);
+}
+
+/* inline: next/font sets these variables on <body>, so resolve them at use site */
+@theme inline {
+  --font-serif: var(--font-serif-face), Georgia, serif;
+  --font-sans: var(--font-sans-face), system-ui, sans-serif;
+  --font-mono: var(--font-mono-face), ui-monospace, monospace;
+}
 
 html {
   scroll-behavior: smooth;

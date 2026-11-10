@@ -5,43 +5,38 @@ import { Resend } from "resend";
 import { validateString, getErrorMessage } from "@/lib/utils";
 import ContactFormEmail from "@/email/contact-form-email";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+type SendResult = { data?: { id: string }; error?: string };
 
-export const sendEmail = async (formData: FormData) => {
+export const sendEmail = async (formData: FormData): Promise<SendResult> => {
   const senderEmail = formData.get("senderEmail");
   const message = formData.get("message");
 
   // simple server-side validation
   if (!validateString(senderEmail, 500)) {
-    return {
-      error: "Invalid sender email",
-    };
+    return { error: "Invalid sender email" };
   }
   if (!validateString(message, 5000)) {
-    return {
-      error: "Invalid message",
-    };
+    return { error: "Invalid message" };
   }
 
-  let data;
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) {
+    return { error: "Contact form is not configured. Please email me directly." };
+  }
+
   try {
-    data = await resend.emails.send({
+    // Resend v6 returns { data, error } instead of throwing on API errors.
+    const resend = new Resend(apiKey);
+    const { data, error } = await resend.emails.send({
       from: "Contact Form <onboarding@resend.dev>",
       to: "ewopara@gmail.com",
       subject: "Message from contact form",
-      reply_to: senderEmail,
-      react: React.createElement(ContactFormEmail, {
-        message: message,
-        senderEmail: senderEmail,
-      }),
+      replyTo: senderEmail,
+      react: React.createElement(ContactFormEmail, { message, senderEmail }),
     });
+    if (error) return { error: error.message };
+    return { data: data ?? undefined };
   } catch (error: unknown) {
-    return {
-      error: getErrorMessage(error),
-    };
+    return { error: getErrorMessage(error) };
   }
-
-  return {
-    data,
-  };
 };
