@@ -5,6 +5,9 @@ import { Resend } from "resend";
 import { validateString, getErrorMessage } from "@/lib/utils";
 import ContactFormEmail from "@/email/contact-form-email";
 
+// Sender on the verified Resend domain mail.paradoxequity.com. Override with CONTACT_FROM_EMAIL.
+const fromAddress = process.env.CONTACT_FROM_EMAIL ?? "contact@mail.paradoxequity.com";
+
 type SendResult = { data?: { id: string }; error?: string };
 
 export const sendEmail = async (formData: FormData): Promise<SendResult> => {
@@ -28,7 +31,7 @@ export const sendEmail = async (formData: FormData): Promise<SendResult> => {
     // Resend v6 returns { data, error } instead of throwing on API errors.
     const resend = new Resend(apiKey);
     const { data, error } = await resend.emails.send({
-      from: "Contact Form <onboarding@resend.dev>",
+      from: `Contact Form <${fromAddress}>`,
       to: "ewopara@gmail.com",
       subject: "Message from contact form",
       replyTo: senderEmail,

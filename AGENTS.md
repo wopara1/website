@@ -39,6 +39,7 @@ Personal portfolio and digital footprint, served at https://www.paradoxequity.co
 - Positioning: full-stack developer, trading as one project. The "Student of markets" headline stays. Legacy (mainframe) plus modern is the differentiator and is shown openly.
 - Signal availability for project work without saying "hire me" or "contract". Do not use "job hunting" language.
 - Plain, specific, first person, no hype. Do not invent experience, years, metrics or client names.
+- The share card text in `app/opengraph-image.tsx` repeats the hero headline; change both together.
 - Update `CV.pdf` when the copy changes; the two must agree.
 
 <!-- BEGIN:nextjs-agent-rules -->

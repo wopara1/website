@@ -25,6 +25,8 @@ app/
   page.tsx          composes the sections; revalidate = 86400
   globals.css       theme tokens (dark default, .light override), Tailwind theme, .label utility
   icon.svg, apple-icon.png, favicon.ico   EW monogram favicon set
+  opengraph-image.tsx   1200x630 share card generated with next/og (dark palette, sans font)
+  sitemap.ts, robots.ts   one URL (siteUrl); robots allows all and points to the sitemap
 components/
   hero.tsx          client; headline, CTAs, social links, pair flips, headshot; takes a `status` node
   status-pill.tsx   SERVER; `availability` + month/year, computed at render
@@ -64,18 +66,27 @@ public/            CV.pdf, gallery/headshot.png
 1. `contact.tsx` collects `senderEmail` and `message` (client-side `required`, `maxLength` 500 / 5000).
 2. It calls the `sendEmail` server action with `FormData`.
 3. The action re-validates both fields (type and length), then checks `RESEND_API_KEY`. If unset it returns `{ error: "Contact form is not configured..." }`.
-4. It sends through Resend: from `Contact Form <onboarding@resend.dev>`, to `ewopara@gmail.com`, `replyTo` the sender, body from `ContactFormEmail`.
+4. It sends through Resend: from `Contact Form <contact@mail.paradoxequity.com>` (overridable with `CONTACT_FROM_EMAIL`), to `ewopara@gmail.com`, `replyTo` the sender, body from `ContactFormEmail`.
 5. Resend v6 returns `{ data, error }` and does not throw on API errors; the action maps `error` to `{ error: message }`. The client shows a toast either way.
 
-**Status (tested 2026-11-09, local dev):** against a mock Resend endpoint (`RESEND_BASE_URL`), a 200 shows the success toast and clears the form; a 422 shows the API error message and keeps the input; the request carries the expected `from`, `to`, `reply_to` and auth header. One real send through the live Resend API returned the success toast. Emmanuel confirmed the email arrived at ewopara@gmail.com (from "Contact Form <onboarding@resend.dev>", reply-to the sender; it first landed in spam and he marked it not spam). `onboarding@resend.dev` is Resend's sandbox sender: it only delivers to the Resend account owner's address and is spam-prone, so a verified domain sender is still needed before public launch. To test without sending, point `RESEND_BASE_URL` at a local mock.
+**Sender:** `mail.paradoxequity.com` is verified in Resend (DNS at Spaceship). The sandbox `onboarding@resend.dev` was used until 2026-11-09; it lands in spam and only delivers to the account owner.
+
+**Tested 2026-11-09 (production build, local):** against a mock Resend endpoint (`RESEND_BASE_URL`), a 200 shows the success toast and clears the form, a 422 shows the API error and keeps the input, and the request carries `from: contact@mail.paradoxequity.com`, `to`, `reply_to` and an auth header. Real sends through the live Resend API succeeded with both the sandbox sender (delivered, landed in spam, confirmed by Emmanuel) and the verified sender (API accepted; inbox and spam placement for the verified sender not yet confirmed). To test without sending, point `RESEND_BASE_URL` at a local mock.
 
 ## Environment variables
 Names only; see `.env.example`. Never commit `.env*.local`.
 | Name | Where used | Notes |
 |---|---|---|
 | `RESEND_API_KEY` | `actions/sendEmail.ts` (server) | required for the contact form |
+| `CONTACT_FROM_EMAIL` | `actions/sendEmail.ts` | optional; sender on a Resend-verified domain. Default `contact@mail.paradoxequity.com` |
 | `RESEND_BASE_URL` | read by the Resend SDK | optional; test-only override to a mock server. Never set in production |
 | `NEXT_PUBLIC_SITE_URL` | `app/layout.tsx`, `lib/data.ts` | optional; defaults to `https://www.paradoxequity.com`. Lets the domain change without code edits |
+
+## SEO and sharing
+- `app/layout.tsx` sets `metadataBase` (from `siteUrl`), title, description, canonical `/`, Open Graph and a Twitter `summary_large_image` card. The image comes from `app/opengraph-image.tsx`, so there is no static asset to keep in sync.
+- Canonical host is `https://www.paradoxequity.com`; the bare domain 308-redirects to it (checked 2026-11-09).
+- Locally the og:image URL points at production, which has no such route until deploy; fetch `/opengraph-image` on localhost to preview.
+- The card uses the renderer's default sans font (Georgia is unavailable there), so it does not match the site's serif headline exactly.
 
 ## Assets
 - `public/gallery/headshot.png`: hero portrait (rendered with `next/image`).
@@ -83,8 +94,8 @@ Names only; see `.env.example`. Never commit `.env*.local`.
 - Project screenshots were removed; rows are text-only.
 
 ## Known gaps and open items
-1. Contact sender domain not verified (above); the sandbox sender lands in spam.
-2. No Open Graph image, `sitemap`, or `robots` metadata yet.
+1. Verified-sender inbox placement not yet confirmed by a human (API accepted the send).
+2. Social previews not yet checked on real platforms (LinkedIn Post Inspector, etc.); crawlers cache cards, so check after deploy. Sitemap not yet submitted to Google Search Console.
 3. No project links (repo or live) on any row. The Paradox row says it has its own site; no link until that exists.
 4. No automated tests. Quality gates are `npm run lint` and `npm run build` plus manual viewport checks (1440, 390, 320 px; no horizontal overflow, header one line).
 5. `npm audit` reports 4 low-severity issues, all via `html-to-text` -> `deepmerge` inside `@react-email/components` (email template only).

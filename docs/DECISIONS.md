@@ -81,3 +81,16 @@ Format: **Status** (Accepted / Superseded), **Date**, **Decided by**, then Conte
 - **Status:** Accepted. **Date:** 2026-11-09. **Decided by:** Emmanuel.
 - **Decision:** `availability` constant in `lib/data.ts` feeds both `StatusPill` and the ticker's STATUS item.
 - **Rejected:** Leaving two copies; they had already been edited separately once.
+
+## ADR-013: Send contact mail from a verified subdomain, `contact@mail.paradoxequity.com`
+- **Status:** Accepted. **Date:** 2026-11-09. **Decided by:** Emmanuel; Hermes changed the code.
+- **Context:** The sandbox sender `onboarding@resend.dev` landed in spam and only delivers to the Resend account owner. DNS for paradoxequity.com is at Spaceship and had no MX or TXT records.
+- **Decision:** Verify `mail.paradoxequity.com` in Resend and send from `contact@mail.paradoxequity.com`. The address is a constant in `actions/sendEmail.ts`, overridable by `CONTACT_FROM_EMAIL`.
+- **Rejected:** Sending from the root domain (keeps the root free for real mailboxes or Paradox later); keeping the sandbox sender.
+- **Consequences:** Set `RESEND_API_KEY` in Vercel. Reply-to is the visitor, so replying works directly.
+
+## ADR-014: Open Graph card, sitemap and robots
+- **Status:** Accepted. **Date:** 2026-11-09. **Decided by:** Emmanuel (asked for it), Hermes designed it.
+- **Decision:** Generate the share card in code (`app/opengraph-image.tsx`) with the headline and name on the dark palette; add canonical and Twitter large-image metadata; add a one-URL sitemap and a permissive robots file.
+- **Rejected:** A static PNG (drifts from copy); skipping sitemap and robots (cheap, and Search Console uses them).
+- **Consequences:** Card font is sans, not the site's serif. If the headline changes, update the card text too.

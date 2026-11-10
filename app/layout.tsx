@@ -22,11 +22,24 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.paradoxequity.c
 // Dark is the default. Only an explicit saved "light" choice switches the palette, before first paint.
 const themeInit = `try{if(localStorage.getItem("theme")==="light")document.documentElement.classList.add("light")}catch(e){}`;
 
+const title = "Emmanuel Wopara | Full-stack developer";
+const description =
+  "Emmanuel Wopara is a full-stack developer in Texas. Modern web, legacy mainframe, and a long-running interest in financial markets.";
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "Emmanuel Wopara | Full-stack developer",
-  description:
-    "Emmanuel Wopara is a full-stack developer in Texas. Modern web, legacy mainframe, and a long-running interest in financial markets.",
+  title,
+  description,
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    url: "/",
+    siteName: "Emmanuel Wopara",
+    title,
+    description,
+    locale: "en_US",
+  },
+  twitter: { card: "summary_large_image", title, description },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
