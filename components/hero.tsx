@@ -46,7 +46,7 @@ export default function Hero({ status }: { status: React.ReactNode }) {
         transition={{ duration: 0.7, delay: 0.1 }}
         className="mx-auto w-full max-w-xs md:max-w-none"
       >
-        <div className="rotate-1 border border-line bg-paper-deep p-3 shadow-[6px_6px_0_0_rgba(22,21,15,0.9)] transition-transform hover:rotate-0">
+        <div className="rotate-1 border border-line bg-paper-deep p-3 shadow-[6px_6px_0_0_var(--frame)] transition-transform hover:rotate-0">
           <Image
             src="/gallery/headshot.png"
             alt="Portrait of Emmanuel Wopara"

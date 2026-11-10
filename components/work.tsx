@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import SectionHeading from "./section-heading";
 import Sparkline from "./sparkline";
@@ -50,18 +49,13 @@ export default function Work() {
                   >
                     <div className="grid gap-6 px-3 pb-7 sm:grid-cols-[5rem_1fr] sm:gap-4">
                       <span />
-                      <div className="grid gap-6 md:grid-cols-[1fr_16rem]">
-                        <div>
-                          <p className="max-w-xl leading-relaxed text-muted">{p.description}</p>
-                          <ul className="mt-4 flex flex-wrap gap-2">
-                            {p.stack.map((s) => (
-                              <li key={s} className="rounded-full border border-line px-3 py-1 font-mono text-xs">{s}</li>
-                            ))}
-                          </ul>
-                        </div>
-                        {p.image && (
-                          <Image src={p.image} alt={`${p.title} screenshot`} className="w-full border border-line" sizes="256px" />
-                        )}
+                      <div>
+                        <p className="max-w-xl leading-relaxed text-muted">{p.description}</p>
+                        <ul className="mt-4 flex flex-wrap gap-2">
+                          {p.stack.map((s) => (
+                            <li key={s} className="rounded-full border border-line px-3 py-1 font-mono text-xs">{s}</li>
+                          ))}
+                        </ul>
                       </div>
                     </div>
                   </motion.div>

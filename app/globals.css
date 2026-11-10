@@ -1,13 +1,40 @@
 @import "tailwindcss";
 
-@theme {
-  --color-paper: #f6f2e9;
-  --color-paper-deep: #ece6d7;
-  --color-ink: #16150f;
-  --color-muted: #6b665a;
-  --color-up: #1f7a4d;
-  --color-down: #b4412f;
-  --color-line: rgba(22, 21, 15, 0.14);
+/* Dark is the default. Add the "light" class on <html> for the light palette. */
+:root {
+  color-scheme: dark;
+  --paper: #12110e;
+  --paper-deep: #1b1a15;
+  --ink: #f1ede2;
+  --muted: #a39e90;
+  --up: #4cc38a;
+  --down: #e5715a;
+  --line: rgba(241, 237, 226, 0.14);
+  --grid: rgba(241, 237, 226, 0.035);
+  --frame: rgba(76, 195, 138, 0.9);
+}
+
+:root.light {
+  color-scheme: light;
+  --paper: #f6f2e9;
+  --paper-deep: #ece6d7;
+  --ink: #16150f;
+  --muted: #6b665a;
+  --up: #1f7a4d;
+  --down: #b4412f;
+  --line: rgba(22, 21, 15, 0.14);
+  --grid: rgba(22, 21, 15, 0.035);
+  --frame: rgba(22, 21, 15, 0.9);
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-paper-deep: var(--paper-deep);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-up: var(--up);
+  --color-down: var(--down);
+  --color-line: var(--line);
 }
 
 /* inline: next/font sets these variables on <body>, so resolve them at use site */
@@ -26,14 +53,14 @@ body {
   @apply bg-paper text-ink font-sans antialiased;
   /* faint chart-paper grid */
   background-image:
-    linear-gradient(to right, rgba(22, 21, 15, 0.035) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(22, 21, 15, 0.035) 1px, transparent 1px);
+    linear-gradient(to right, var(--grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
   background-size: 48px 48px;
 }
 
 ::selection {
-  background: #1f7a4d;
-  color: #f6f2e9;
+  background: var(--up);
+  color: var(--paper);
 }
 
 .label {

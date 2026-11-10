@@ -1,5 +1,6 @@
 import { links } from "@/lib/data";
 import SocialLinks from "./social-links";
+import ThemeToggle from "./theme-toggle";
 
 export default function Header() {
   return (
@@ -25,6 +26,7 @@ export default function Header() {
           </ul>
         </nav>
         <SocialLinks variant="icons" className="border-l border-line pl-3 sm:pl-6" />
+        <ThemeToggle />
         </div>
       </div>
     </header>

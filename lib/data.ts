@@ -1,6 +1,3 @@
-import scecImg from "@/public/SCEC_homepage.png";
-import type { StaticImageData } from "next/image";
-
 export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.paradoxequity.com";
 export const email = "ewopara@gmail.com";
 
@@ -42,7 +39,6 @@ export type Project = {
   status: "Building" | "Shipped";
   description: string;
   stack: string[];
-  image?: StaticImageData;
   featured?: boolean;
   /** decorative sparkline points (0-100). Not real data. */
   spark: number[];
@@ -68,7 +64,6 @@ export const projects: Project[] = [
     description:
       "An organizational meeting tracker with advanced filtering and user feedback. I led the front end and managed the project.",
     stack: ["React", "Tailwind", "Ruby on Rails", "Docker", "RuboCop"],
-    image: scecImg,
     spark: [30, 38, 36, 48, 52, 50, 60, 64, 63, 70],
   },
   {

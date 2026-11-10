@@ -19,6 +19,9 @@ const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono-face", 
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.paradoxequity.com";
 
+// Dark is the default. Only an explicit saved "light" choice switches the palette, before first paint.
+const themeInit = `try{if(localStorage.getItem("theme")==="light")document.documentElement.classList.add("light")}catch(e){}`;
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: "Emmanuel Wopara | Full-stack developer",
@@ -28,7 +31,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInit }} />
+      </head>
       <body className={`${serif.variable} ${sans.variable} ${mono.variable}`}>
         <Ticker />
         <Header />
