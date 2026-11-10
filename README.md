@@ -1,25 +1,22 @@
-# My Personal Website
+# website
 
-My personal portfolio website is crafted in a minimalist and sleek manner, incorporating various features such as Client & Server Components, a dark mode toggle, email sending functionality, an about page, and more.
+Emmanuel Wopara's portfolio, served at https://www.paradoxequity.com. Next.js (App Router), TypeScript, Tailwind CSS 4, Framer Motion, Resend, hosted on Vercel.
 
-## Tech Stack
+## Run it
+Requires Node 22 (`.nvmrc`).
+```bash
+npm ci
+cp .env.example .env.local   # add RESEND_API_KEY for the contact form
+npx next dev -H 127.0.0.1 -p 4322
+```
+Checks: `npm run lint` and `npm run build`.
 
-backend:
-- [Next.js](nextjs.org) / TypeScript
-frontend:
-- [Type Script](https://www.typescriptlang.org) (App content)
-- [Tailwind CSS](https://tailwindcss.com) (Styling)
-- [Framer Motion](https://www.framer.com/motion/) (Animations)
-- [React.Email & Resend](https://resend.com/docs/introduction) (Email functionality)
+## Where things are
+- Content: `lib/data.ts`
+- Architecture: [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md)
+- Editing content and adding projects: [`docs/CONTENT.md`](docs/CONTENT.md)
+- Decisions and reasons: [`docs/DECISIONS.md`](docs/DECISIONS.md)
+- Agent rules (Hermes, Copilot, others): [`AGENTS.md`](AGENTS.md)
 
-## Getting Started
-
-Make sure you have the lastest version of Node.js installed on your machine.
-
-1. **Install Dependencies**: `npm install`
-2. **Environment variables**: Copy `.env.example` to a new `.env.local`
-3. **Start Developing**: `npm run dev`, this will automatically create the .contentlayer files and start the Next.js development server.
-
-## Deployment
-
-Deploying this project to [Vercel](https://vercel.com/new/clone) is a straightforward process. Just link your Vercel account to your GitHub repository, and Vercel will handle automatic building and deployment whenever there's a new push to the main branch. Additionally, remember to include the project's .env variables in your Vercel project settings.
+## Deploy
+Vercel deploys on push to `main`. Set `RESEND_API_KEY` (and optionally `NEXT_PUBLIC_SITE_URL`) in the Vercel project settings. Work happens on `rewrite/2026`; do not merge to `main` until the redesign is signed off.

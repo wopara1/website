@@ -17,7 +17,7 @@ export const links = [
 /** Facts shown in the top strip. Labels only; no market data. */
 export const tickerItems = [
   { label: "EW", value: "Austin, TX", tone: "flat" },
-  { label: "STATUS", value: "Open to conversations", tone: "up" },
+  { label: "STATUS", value: "Open to connect", tone: "up" },
   { label: "PARADOX", value: "In build", tone: "up" },
   { label: "COMPTROLLER", value: "Since 2022", tone: "flat" },
   { label: "LEGACY", value: "COBOL / JCL / Natural", tone: "flat" },
